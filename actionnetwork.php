@@ -1147,8 +1147,7 @@ EOHTML;
 
 		// parse embed code
 		$embed_style_matched = preg_match_all("/<link href='https:\/\/actionnetwork\.org\/css\/style-embed(-whitelabel)?(-v3)?\.css' rel='stylesheet' type='text\/css' \/>/", $embed_code, $embed_style_matches, PREG_SET_ORDER);
-		$embed_script_matched = preg_match_all("|<script src='https://actionnetwork\.org/widgets/v[2-4]/([a-z_]+)/([-a-z0-9]+)\?format=js&source=widget(&style=full)?'>|", $embed_code, $embed_script_matches, PREG_SET_ORDER);
-
+		$embed_script_matched = preg_match_all("|<script src='https://actionnetwork\.org/widgets/v[2-9]/([a-z_]+)/([-a-z0-9\-]+)\?format=js&source=widget(&style=full)?'></script>|", $embed_code, $embed_script_matches, PREG_SET_ORDER);
 		$embed_style = $embed_style_matched ? ( isset($embed_style_matches[0][1]) && $embed_style_matches[0][1] ? 'layout_only' : 'default' ) : 'no';
 		$embed_type = isset($embed_script_matches[0][1]) ? $embed_script_matches[0][1] : '';
 		if ($embed_type == 'letter') { $embed_type = 'advocacy_campaign'; }
